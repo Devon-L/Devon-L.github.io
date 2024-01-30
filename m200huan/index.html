@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购买和抽奖</title>
+</head>
+<body>
+
+<p>当前抽奖次数: <span id="lotteryCount">0</span></p>
+
+<button onclick="buyLottery(1)">购买1次</button>
+<button onclick="buyLottery(10)">购买10次</button>
+<button onclick="buyLottery(1000)">购买1000次</button>
+
+<button onclick="drawLottery(1)">抽奖1次</button>
+<button onclick="drawLottery(10)">抽奖10次</button>
+
+<div id="winningItems"></div>
+<button onclick="showWinningRecords()">显示获奖记录</button>
+<div id="winningRecords"></div>
+
+<script>
+    // 初始抽奖次数
+    let lotteryCount = 0;
+    // 获奖记录
+    let winningRecords = [];
+
+    // 更新抽奖次数显示
+    function updateLotteryCount() {
+        document.getElementById("lotteryCount").innerText = lotteryCount;
+    }
+
+    // 购买抽奖次数的函数
+    function buyLottery(quantity) {
+        const cost = 10 * quantity; // 假设购买一次抽奖需要花费10积分或金币
+
+        // 扣除积分或金币
+        // 这里只是一个示例，实际上需要根据你的实际情况来扣除用户的积分或金币
+        lotteryCount += quantity;
+
+        // 更新抽奖次数显示
+        updateLotteryCount();
+
+        console.log("购买成功，可以开始抽奖了！");
+    }
+
+    // 抽奖的函数
+    function drawLottery(quantity) {
+        if (lotteryCount >= quantity) {
+            // 在这里添加抽奖的逻辑
+            for (let i = 0; i < quantity; i++) {
+                // 重新设置奖池概率
+                const prizePool = [
+                    { item: "QBZ03-巅峰荣耀", probability: 0.15 },
+                    { item: "M4A1-雷神-巅峰荣耀皮肤", probability: 0.15 },
+                    { item: "幻神-冠军之幻", probability: 0.10 },
+                    { item: "黑龙-冠军之武", probability: 0.25 },
+                    { item: "龙啸-冠军之啸", probability: 0.30 },
+                    { item: "迷你深渊冰龙-王绿豆", probability: 0.25 },
+                    { item: "雷神-R.LGD-CFPLS18冠军", probability: 0.35 },
+                    { item: "毁灭-孙三炮", probability: 0.50 },
+                    { item: "十支战队击杀图标任选", probability: 0.95 },
+                    { item: "2000经验值", probability: 0.50 },
+                    { item: "1000经验值", probability: 1.00 },
+                    { item: "500经验值", probability: 7.00 },
+                    { item: "200经验值", probability: 46.00 },
+                    { item: "100经验值", probability: 42.50 }
+                ];
+
+                // 计算总概率
+                const totalProbability = prizePool.reduce((total, item) => total + item.probability, 0);
+
+                // 生成随机数
+                const randomProbability = Math.random() * totalProbability;
+
+                // 根据随机数确定中奖项
+                let winningItem = "";
+                let accumulatedProbability = 0;
+                for (const item of prizePool) {
+                    accumulatedProbability += item.probability;
+                    if (randomProbability <= accumulatedProbability) {
+                        winningItem = item.item;
+                        break;
+                    }
+                }
+
+                // 添加中奖记录
+                winningRecords.push({ item: winningItem, time: new Date() });
+
+                // Display the winning item without using alert
+                const winningItemsDiv = document.getElementById("winningItems");
+                const newParagraph = document.createElement("p");
+                newParagraph.innerText = `恭喜你中奖了！你获得了：${winningItem}`;
+                winningItemsDiv.appendChild(newParagraph);
+
+                // 更新抽奖次数显示
+                lotteryCount--;
+            }
+
+            // 更新抽奖次数显示
+            updateLotteryCount();
+        } else {
+            console.log("抽奖次数不足，请先购买足够的抽奖次数！");
+        }
+    }
+
+    // 显示获奖记录的函数
+    function showWinningRecords() {
+        const recordsDiv = document.getElementById("winningRecords");
+        recordsDiv.innerHTML = ""; // 清空之前的记录
+
+        // 显示最近十个中奖记录
+        const recentRecords = winningRecords.slice(-10);
+        for (const record of recentRecords) {
+            const recordParagraph = document.createElement("p");
+            recordParagraph.innerText = `中奖记录：${record.item}，时间：${record.time}`;
+            recordsDiv.appendChild(recordParagraph);
+        }
+    }
+
+    // 初始化时更新抽奖次数显示
+    updateLotteryCount();
+</script>
+
+</body>
+</html>
