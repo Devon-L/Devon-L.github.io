@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!-- saved from url=(0146)file:///F:/wx/WeChat%20Files/wxid_baqjia2788pd12/FileStorage/File/2024-01/6b99d260a69362619db3652417a947cf_340a42321775489a816971eabb66cb9a_8.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title style="font-weight: bold; font-size: 24px; text-align: center;">传说灵眸夺宝</title>
+
+
+
+
+
+
+  <style>
+    body {
+      font-family: '黑体', sans-serif;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.5em;
+    }
+a{
+font-size: 1.5em;
+}
+    .prize {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    button {
+      margin: 5px;
+       width: 200px;
+    height: 50px;
+cursor:pointer;
+    }
+    table {
+      margin: auto;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>传说灵眸夺宝</h1>
+<br>
+  <button onclick="buyKey(1)">购买1把钥匙</button>
+  <button onclick="buyKey(11)">购买11把钥匙</button>
+<br>
+<br>
+<br>
+<div class="prize">传说灵眸 无序列号版</div>
+  <div class="prize">非觉醒版王者芳薇</div>
+  <div class="prize">M14EBR-玄武</div>
+  <div class="prize">王者潘多拉</div>
+  <div class="prize">觉醒版炼狱-悦蓝</div>
+  <div class="prize">裁决-流光秘银皮肤</div>
+  <div class="prize">AN94-超新星</div>
+  <div class="prize">M4A1-龙血</div>
+  <div class="prize">王者之石x10</div>
+  <div class="prize">道具卡x1</div>
+  <div class="prize">10000点券</div>
+  <div class="prize">新春福星x1</div>
+  <div class="prize">祥龙卡x1</div>
+  <div class="prize">传说卡x1</div>
+  <div class="prize">王者卡x1</div>
+  <div class="prize">英雄卡x1</div>
+<br>
+  <button onclick="drawOnce()">抽一次</button>
+  <button onclick="drawTenTimes()">抽十次</button>
+<br>
+<br>
+  <div id="consumedKeys" style="font-size: 30px; margin-bottom: 10px;"></div>
+  <div id="remainingKeys" style="font-size: 30px; margin-top: 10px;"></div>
+<div id="p" style="font-size: 30px; margin-top: 10px;"></div>
+<div id="s" style="font-size: 30px; margin-top: 10px;"></div>
+
+  <button style="display:none;" id="zzz" onclick="showResults()">中奖记录</button>
+<br>
+  <div id="results" style="display: none;">
+    <h2>已抽得奖品：</h2>
+    <table id="resultsTable">
+      <tbody><tr>
+        <th>奖品名称</th>
+        <th>变成钥匙</th>
+        <th>操作</th>
+      </tr>
+    </tbody></table>
+  </div>
+  <script>
+    let keys = 0;
+    let consumedKeys = 0;
+    let storedItems = [];
+    let p = 0;
+let s=0;
+    function drawOnce() {
+      if (keys >= 1) {
+        const result = drawPrize();
+        alert(`恭喜您获得了礼包：${result}`);
+        if (getDecomposeKeys(result) !== 0) {
+          addResultToBox(result);
+        }
+        keys--;
+      } else {
+        alert('抱歉，您的抽奖钥匙不足~');
+      }
+      updateKeysInfo();
+    }
+    function drawTenTimes() {
+      if (keys >= 10) {
+        let results = [];
+        for (let i = 0; i < 10; i++) {
+          const result = drawPrize();
+          results.push(result);
+          if (getDecomposeKeys(result) !== 0) {
+            addResultToBox(result);
+          }
+        }
+        alert(`恭喜您获得了礼包：\n${results.join('\n')}`);
+        keys -= 10;
+      } else {
+        alert('抱歉，您的抽奖钥匙不足~');
+      }
+      updateKeysInfo();
+    }
+    function drawPrize() {
+      const prizes = ["传说灵眸 无序列号版", "非觉醒版王者芳薇", "M14EBR-玄武", "王者潘多拉", "觉醒版炼狱-悦蓝", "裁决-流光秘银皮肤", "AN94-超新星", "M4A1-龙血", "王者之石x10", "道具卡x1", "10000点券", "新春福星x1", "祥龙卡x1", "传说卡x1", "王者卡x1", "英雄卡x1"];
+      const probabilities = [10, 15, 25, 15, 20, 25, 30, 80, 150,3500, 60, 10, 3315, 15, 80, 2650]; // 概率总和为10000，概率为万分之，符合官网概率
+      let randomNum = Math.random() * 10000;
+      let cumulativeProbability = 0;
+      for (let i = 0; i < probabilities.length; i++) {
+        cumulativeProbability += probabilities[i];
+        if (randomNum <= cumulativeProbability) {
+	if(i==15){p=p+2;}
+	if(i==14){p=p+3;}
+	if(i==13){p=p+5;}
+	if(i==12){p=p+10;}
+	if(i==11){p=p+100;}
+if(i==0){s=s+1;}
+if(i==1){s=s+1;}
+if(i==2){s=s+1;}
+if(i==4){s=s+1;}
+
+          return prizes[i];//返回对应的奖品
+        }
+      }
+    }
+    function addResultToBox(result) {
+      storedItems.push({ item: result, decomposeKeys: getDecomposeKeys(result) });
+    }
+    function showResults() {
+      const resultsBox = document.getElementById('results');
+      resultsBox.style.display = 'block';
+      displayStoredItems();
+    }
+   
+   function displayStoredItems() {
+  const resultsTable = document.getElementById('resultsTable');
+  resultsTable.innerHTML = '';
+
+  const headerRow = resultsTable.insertRow(0);
+  const headerCell1 = headerRow.insertCell(0);
+  headerCell1.textContent = '奖品名称';
+  const headerCell2 = headerRow.insertCell(1);
+  headerCell2.textContent = '变成钥匙';
+  const headerCell3 = headerRow.insertCell(2);
+  headerCell3.textContent = '操作';
+
+  for (let i = 0; i < storedItems.length; i++) {
+    const row = resultsTable.insertRow();
+
+    const cell1 = row.insertCell(0);
+    cell1.textContent = storedItems[i].item;
+
+    const cell2 = row.insertCell(1);
+    cell2.textContent = storedItems[i].decomposeKeys;
+
+    const cell3 = row.insertCell(2);
+
+    if (storedItems[i].decomposed) {
+      const decomposedLabel = document.createElement('span');
+      decomposedLabel.textContent = '已分解';
+      cell3.appendChild(decomposedLabel);
+    } else {
+      const decomposeButton = document.createElement('button');
+      decomposeButton.textContent = '分解';
+      decomposeButton.onclick = function() {
+        decomposeItem(i);
+      };
+      cell3.appendChild(decomposeButton);
+
+      const sendButton = document.createElement('button');
+      sendButton.textContent = '发送';
+      sendButton.onclick = function() {
+        sendItem(i);
+      };
+      cell3.appendChild(sendButton);
+    }
+
+    if (storedItems[i].sent) {
+      const sentLabel = document.createElement('span');
+      sentLabel.textContent = '已发送';
+      cell3.innerHTML = ''; // 清空操作单元格内容
+      cell3.appendChild(sentLabel);
+    }
+  }
+}
+
+function decomposeItem(index) {
+  const item = storedItems[index].item;
+  const decomposeCount = storedItems[index].decomposeKeys;
+  const confirmDecompose = confirm(`是否将${item}分解成${decomposeCount}把钥匙？`);
+
+  if (confirmDecompose) {
+    keys += decomposeCount;
+    storedItems[index].decomposed = true; // 添加已分解标记
+    displayStoredItems();
+    alert(`成功分解道具，获得${decomposeCount}把钥匙，当前总钥匙数量为${keys}`);
+    updateKeysInfo();
+  }
+}
+
+function sendItem(index) {
+  const item = storedItems[index].item;
+  storedItems[index].sent = true; // 添加已发送标记
+  displayStoredItems();
+  alert(`恭喜您获得了礼包：${item}(永久)`);
+}
+
+    function buyKey(amount) {
+      keys += amount;
+      consumedKeys += (amount === 1) ? 10 : 100;
+      alert(`成功购买${amount}把钥匙,当前总钥匙数量为${keys}`);
+      updateKeysInfo();
+    }
+    function storeItem(item) {
+      storedItems.push({ item: item, decomposeKeys: getDecomposeKeys(item) });
+    }
+    function updateKeysInfo() {
+      const remainingKeysInfo = document.getElementById('remainingKeys');
+      remainingKeysInfo.textContent = `当前剩余钥匙数量：${keys}`;
+    
+      const consumedKeysInfo = document.getElementById('consumedKeys');
+      consumedKeysInfo.textContent = `已消费：${consumedKeys}元`;
+    
+      const pInfo = document.getElementById('p');
+      pInfo.textContent = `祥龙卡：${p}`;
+
+      const sInfo = document.getElementById('s');
+      sInfo.textContent = `抽中点券累计次数：${s}`;
+
+
+document.getElementById('zzz').click();
+
+}
+    function getDecomposeKeys(item) {
+      // 在这里定义每个奖品分解所对应的钥匙数量，如果为0则不加入暂存箱
+      const decomposeKeyMap = {
+        "传说灵眸 无序列号版": 30,
+        "非觉醒版王者芳薇": 20,
+        "M14EBR-玄武": 15,
+        "王者潘多拉": 20,
+        "觉醒版炼狱-悦蓝": 15,
+        "裁决-流光秘银皮肤":10,
+        "AN94-超新星": 6,
+        "M4A1-龙血": 4,
+        "道具卡x1": 0,
+        "王者之石x10": 0,
+        "10000点券": 0,
+        "新春福星x1": 0,
+        "祥龙卡x1": 0,
+        "传说卡x1": 0,
+        "王者卡x1": 0,
+        "英雄卡x1": 0 
+      };
+
+      return decomposeKeyMap[item] || 0; // 默认为0把钥匙
+    }
+
+function lingqu(){
+if(consumedKeys>0){
+keys=keys+1;
+alert(`成功领取1把钥匙,当前总钥匙数量为${keys}`);
+updateKeysInfo();
+document.getElementById("onhand").disabled=true;
+}
+if(consumedKeys<10){
+
+alert(`抱歉，您还未在掌上模拟器购买礼包。`);
+
+}
+}
+
+
+
+
+
+
+  </script>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+  <button id="onhand" onclick="lingqu()">仅限掌上模拟器购买<br>可额外领取1把钥匙</button>
+<br>
+<br>
+<p style="font-size=5px;">本html文件仅供娱乐或学习使用，无其他任何用途</p>
+
+
+
+</body></html>
