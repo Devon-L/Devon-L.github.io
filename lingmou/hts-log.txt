@@ -1,0 +1,11 @@
+HTTrack3.49-4+libhtsjava.so.2 launched on Wed, 31 Jan 2024 08:50:22 at http://107.151.246.75:6696/hdsadsadwd/%E7%82%B983kfdfdsf/
+(httrack http://107.151.246.75:6696/hdsadsadwd/%E7%82%B983kfdfdsf/ -O /root/cslm )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+
+HTTrack Website Copier/3.49-4 mirror complete in 5 seconds : 5 links scanned, 4 files written (87498 bytes overall) [23705 bytes received at 4741 bytes/sec], 87498 bytes transferred using HTTP compression in 4 files, ratio 25%, 2.5 requests per connection
+(No errors, 0 warnings, 0 messages)
