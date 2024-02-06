@@ -1,0 +1,12 @@
+HTTrack3.49-4+libhtsjava.so.2 launched on Tue, 06 Feb 2024 01:05:48 at http://1.8886.ltd/directory/XianglongWelfareHui/
+(httrack http://1.8886.ltd/directory/XianglongWelfareHui/ -O /root/Xianglong2.0 )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+01:05:54	Error: 	"Not Found" (404) at link 1.8886.ltd/directory/XianglongWelfareHui/hdnq.html (from 1.8886.ltd/directory/XianglongWelfareHui/index.js)
+
+HTTrack Website Copier/3.49-4 mirror complete in 6 seconds : 6 links scanned, 4 files written (91875 bytes overall) [23484 bytes received at 3914 bytes/sec], 91875 bytes transferred using HTTP compression in 4 files, ratio 20%
+(1 errors, 0 warnings, 0 messages)
